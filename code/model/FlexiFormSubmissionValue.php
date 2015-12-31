@@ -1,6 +1,7 @@
 <?php
 
-class FlexiFormSubmissionValue extends DataObject {
+class FlexiFormSubmissionValue extends DataObject
+{
 
     private static $db = array(
         'FormFieldID' => 'Int',
@@ -17,7 +18,8 @@ class FlexiFormSubmissionValue extends DataObject {
         'Name'
     );
 
-    public function ColumnValue(){
+    public function ColumnValue()
+    {
         return (class_exists($this->FormFieldClass)) ?
             singleton($this->FormFieldClass)->transformValue($this->Value) :
             $this->Value;

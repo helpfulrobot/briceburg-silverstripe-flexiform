@@ -73,7 +73,7 @@ class FlexiFormField extends DataObject
         $field->description = 'Shown in submissions. Should be short and without special characters.';
 
 
-        if($this->hasMethod('getDefaultValueFormField')) {
+        if ($this->hasMethod('getDefaultValueFormField')) {
             $fields->replaceField('FieldDefaultValue', $this->getDefaultValueFormField());
         }
 
@@ -117,10 +117,10 @@ class FlexiFormField extends DataObject
     {
         $fields = parent::scaffoldSearchFields($_params);
 
-        if($allowed_types = $this->stat('allowed_types')) {
-             $field = $fields->dataFieldByName('ClassName');
-             $field->setSource($allowed_types);
-             $field->setEmptyString('Select Type');
+        if ($allowed_types = $this->stat('allowed_types')) {
+            $field = $fields->dataFieldByName('ClassName');
+            $field->setSource($allowed_types);
+            $field->setEmptyString('Select Type');
         }
         return $fields;
     }
@@ -198,7 +198,7 @@ class FlexiFormField extends DataObject
         return $this->stat('required_field_definitions');
     }
 
-    public function setRequiredFieldDefinitions(Array $required_field_definitions)
+    public function setRequiredFieldDefinitions(array $required_field_definitions)
     {
         return $this->set_stat('required_field_definitions', $required_field_definitions);
     }

@@ -19,7 +19,6 @@ class FlexiFormOptionField extends FlexiFormField
                     implode(', ', $this->Options()
                         ->column('Label'))));
         } else {
-
             $config = new GridFieldConfig_FlexiFormOption();
 
             $fields->addFieldToTab('Root.Main', new GridField('Options', 'Options', $this->Options(), $config));

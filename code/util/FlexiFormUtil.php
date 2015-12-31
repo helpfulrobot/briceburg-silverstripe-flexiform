@@ -18,13 +18,14 @@ class FlexiFormUtil
         Requirements::css($moduleDir . '/css/flexiform.css');
     }
 
-    public static function GetFlexiByIdentifier($identifier){
-        if(isset(self::$identifier_cache[$identifier])) {
+    public static function GetFlexiByIdentifier($identifier)
+    {
+        if (isset(self::$identifier_cache[$identifier])) {
             return self::$identifier_cache[$identifier];
         }
 
-        if($config = FlexiFormConfig::get()->filter('FormIdentifier',$identifier)->first()) {
-            if($flexi = $config->getFlexi()) {
+        if ($config = FlexiFormConfig::get()->filter('FormIdentifier', $identifier)->first()) {
+            if ($flexi = $config->getFlexi()) {
                 self::$identifier_cache[$identifier] = $flexi;
                 return $flexi;
             }
@@ -120,7 +121,6 @@ class FlexiFormUtil
 
         // only create field if it's name doesn't yet exist
         if (! FlexiFormField::get()->filter($filter)->first()) {
-
             if ($obj = FlexiFormUtil::CreateFlexiField($className, $definition)) {
                 $prefix = ($obj->Readonly) ? 'Readonly' : 'Normal';
                 DB::alteration_message("flexiform - Created $prefix $className named `{$obj->FieldName}`.",
@@ -173,12 +173,10 @@ class FlexiFormUtil
 
         // only create handler it doesn't yet exist
         if (! FlexiFormHandler::get()->filter($filter)->first()) {
-
             if ($obj = FlexiFormUtil::CreateFlexiHandler($className, $definition)) {
                 DB::alteration_message("flexiform - Created $className named `{$obj->HandlerName}`.",
                     "created");
             }
         }
     }
-
 }

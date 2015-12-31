@@ -1,6 +1,7 @@
 <?php
 
-class FlexiFormIntHandlerSetting extends FlexiFormHandlerSetting {
+class FlexiFormIntHandlerSetting extends FlexiFormHandlerSetting
+{
 
     private static $casting = array(
         'Value' => 'Int'
@@ -8,11 +9,11 @@ class FlexiFormIntHandlerSetting extends FlexiFormHandlerSetting {
 
     public function getCMSField($name)
     {
-        return new NumericField($name,null,$this->getValue());
+        return new NumericField($name, null, $this->getValue());
     }
 
-    public function getValue(){
+    public function getValue()
+    {
         return (int) parent::getValue();
     }
-
 }

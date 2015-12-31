@@ -25,8 +25,8 @@ class GridFieldConfig_FlexiFormSubmission extends GridFieldConfig
         $export->setExportColumns($this->getCSVColumns($flexi));
     }
 
-    private function getCSVColumns($flexi) {
-
+    private function getCSVColumns($flexi)
+    {
         $columns = array(
             'SubmittedBy' => 'Submitted By',
             'IPAddress' => 'IP Address',
@@ -36,16 +36,15 @@ class GridFieldConfig_FlexiFormSubmission extends GridFieldConfig
         $sql = new SQLQuery();
         $sql->setFrom('FlexiFormSubmissionValue');
         $sql->setSelect('"FlexiFormSubmissionValue"."Name"');
-        $sql->addLeftJoin('FlexiFormSubmission','"FlexiFormSubmissionValue"."SubmissionID" = "FlexiFormSubmission"."ID"');
+        $sql->addLeftJoin('FlexiFormSubmission', '"FlexiFormSubmissionValue"."SubmissionID" = "FlexiFormSubmission"."ID"');
         $sql->addWhere('"FlexiFormSubmission"."FlexiFormID" = ' . $flexi->ID);
         $sql->addWhere('"FlexiFormSubmission"."FlexiFormClass" = \'' . $flexi->class . '\'');
         $sql->setDistinct(true);
 
-        foreach($sql->execute() as $row) {
+        foreach ($sql->execute() as $row) {
             $columns['Values.' . $row['Name']] = $row['Name'];
         }
 
         return $columns;
     }
 }
-

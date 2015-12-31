@@ -20,7 +20,7 @@ class FlexiFormHandlerSetting extends DataObject
     // returns the setting field used to edit its value
     public function getCMSField($name)
     {
-        return new TextField($name,null,$this->getValue());
+        return new TextField($name, null, $this->getValue());
     }
 
     public function CastedValue()
@@ -28,11 +28,13 @@ class FlexiFormHandlerSetting extends DataObject
         return DBField::create_field($this->stat('casting')['Value'], $this->getValue(), 'Value', $this);
     }
 
-    public function getValue(){
+    public function getValue()
+    {
         return ($this->getField('Value')) ?: $this->Handler()->getField($this->Setting);
     }
 
-    public function forTemplate(){
+    public function forTemplate()
+    {
         return $this->CastedValue()->forTemplate();
     }
 
@@ -40,5 +42,4 @@ class FlexiFormHandlerSetting extends DataObject
     {
         return $this->forTemplate();
     }
-
 }

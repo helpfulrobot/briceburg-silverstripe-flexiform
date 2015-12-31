@@ -82,7 +82,6 @@ class FlexiFormHandler extends DataObject
 
         $form_settings = $flexi->FlexiFormConf('HandlerSettings');
         foreach (Config::inst()->get($this->class, 'handler_settings', Config::INHERITED) as $component => $class) {
-
             if (! $setting = $flexi->FlexiFormSetting($component)) {
                 $setting = new $class();
                 $setting->Setting = $component;
@@ -122,7 +121,7 @@ class FlexiFormHandler extends DataObject
      * @param DataObject $flexi The object extended by FlexiFormExtension
      * @return Boolean
      */
-    public function onSubmit(Array $data, FlexiForm $form, SS_HTTPRequest $request, DataObject $flexi)
+    public function onSubmit(array $data, FlexiForm $form, SS_HTTPRequest $request, DataObject $flexi)
     {
         return true;
     }
@@ -138,7 +137,8 @@ class FlexiFormHandler extends DataObject
      * @param DataObject $flexi The object extended by FlexiFormExtension
      */
     public function onSuccess(FlexiForm $form, DataObject $flexi)
-    {}
+    {
+    }
 
     // Templates
     ////////////
@@ -170,7 +170,7 @@ class FlexiFormHandler extends DataObject
         return $this->lookup('required_handler_definitions');
     }
 
-    public function setRequiredHandlerDefinitions(Array $definitions)
+    public function setRequiredHandlerDefinitions(array $definitions)
     {
         return $this->set_stat('required_handler_definitions', $definitions);
     }
@@ -193,7 +193,8 @@ class FlexiFormHandler extends DataObject
     }
 
     public function onConfigUpdate(FlexiFormConfig $config, DataObject $flexi)
-    {}
+    {
+    }
 
     public function requireDefaultRecords()
     {

@@ -41,7 +41,7 @@ class FlexiFormConfig extends DataObject
         return parent::relField($fieldName);
     }
 
-    public function updateHandlerSettings(Array $settings)
+    public function updateHandlerSettings(array $settings)
     {
         foreach ($settings as $component => $value) {
             if ($setting = $this->relField("Setting.$component")) {

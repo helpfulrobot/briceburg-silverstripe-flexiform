@@ -26,6 +26,4 @@ class FlexiFormMultiSelectField extends FlexiFormDropdownField
 
         return $field;
     }
-
-
 }

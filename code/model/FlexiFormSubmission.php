@@ -71,7 +71,6 @@ class FlexiFormSubmission extends DataObject
                     'SubmissionID' => $this->ID,
                     'Name' => substr($fieldName, 7)
                 ))->first()) {
-
                 return $submission_value->ColumnValue();
             }
         }
@@ -79,18 +78,18 @@ class FlexiFormSubmission extends DataObject
         return parent::relField($fieldName);
     }
 
-    public function addStatusMessage($message) {
+    public function addStatusMessage($message)
+    {
         $this->messages[] = $message;
     }
 
-    public function onBeforeWrite(){
-        while($message = array_shift($this->messages)) {
-        $prefix = empty($this->StatusMessages) ? '' : ' ~~ ';
+    public function onBeforeWrite()
+    {
+        while ($message = array_shift($this->messages)) {
+            $prefix = empty($this->StatusMessages) ? '' : ' ~~ ';
             $this->StatusMessages .= $prefix . $message;
         }
 
         return parent::onBeforeWrite();
     }
 }
-
-

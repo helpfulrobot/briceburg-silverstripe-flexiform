@@ -54,7 +54,6 @@ class FlexiFormExtension extends DataExtension
         $fields->removeByName('FlexiFormConfigID');
 
         if ($this->owner->exists()) {
-
             $fields_tab = new Tab('Fields');
             $settings_tab = new Tab('Settings');
 
@@ -80,7 +79,7 @@ class FlexiFormExtension extends DataExtension
             // hint allowed types to FlexiFormField search fields
             singleton('FlexiFormField')->set_stat('allowed_types', $field_types);
             $component = $config->getComponentByType('GridFieldAddExistingSearchButton');
-            $component->setSearchList(FlexiFormField::get()->filter('ClassName',array_keys($field_types)));
+            $component->setSearchList(FlexiFormField::get()->filter('ClassName', array_keys($field_types)));
 
 
             $fields_tab->push(
@@ -137,13 +136,15 @@ class FlexiFormExtension extends DataExtension
         return $fields;
     }
 
-    public function getFlexiFormFrontEndFieldByID($id){
-        return $this->owner->FlexiFormFields()->filter('FlexiFormField.ID',$id)->first();
+    public function getFlexiFormFrontEndFieldByID($id)
+    {
+        return $this->owner->FlexiFormFields()->filter('FlexiFormField.ID', $id)->first();
     }
 
     // Templates
     ////////////
-    public function Form(){
+    public function Form()
+    {
         return Controller::curr()->FlexiForm($this->FlexiFormID());
     }
     // Getters & Setters
@@ -194,7 +195,7 @@ class FlexiFormExtension extends DataExtension
         return $field_types;
     }
 
-    public function setFlexiFormFieldTypes(Array $field_types)
+    public function setFlexiFormFieldTypes(array $field_types)
     {
         return $this->owner->set_stat('flexiform_field_types', $field_types);
     }
@@ -204,7 +205,7 @@ class FlexiFormExtension extends DataExtension
         return $this->owner->stat('flexiform_initial_fields');
     }
 
-    public function setFlexiFormInitialFields(Array $field_definitions)
+    public function setFlexiFormInitialFields(array $field_definitions)
     {
         return $this->owner->set_stat('flexiform_initial_fields', $field_definitions);
     }
@@ -223,7 +224,6 @@ class FlexiFormExtension extends DataExtension
     public function setFlexiFormConfigs($value)
     {
         if ($configs = Controller::curr()->getRequest()->requestVar('FlexiFormConfig')) {
-
             $conf = $this->FlexiFormConf();
 
             foreach ($configs as $property => $value) {
@@ -236,7 +236,7 @@ class FlexiFormExtension extends DataExtension
             }
             $conf->write();
 
-            if($handler = $this->FlexiFormHandler()) {
+            if ($handler = $this->FlexiFormHandler()) {
                 $handler->onConfigUpdate($conf, $this->owner);
             }
         }
@@ -259,7 +259,8 @@ class FlexiFormExtension extends DataExtension
         return $this->FlexiFormConf('Handler');
     }
 
-    public function FlexiFormSetting($setting){
+    public function FlexiFormSetting($setting)
+    {
         return $this->FlexiFormConf("Setting.$setting");
     }
 
@@ -268,7 +269,6 @@ class FlexiFormExtension extends DataExtension
         $names = array();
         if ($result->valid()) {
             foreach ($this->owner->FlexiFormFields() as $field) {
-
                 if (empty($field->Name)) {
                     $result->error("Field names cannot be blank. Encountered a blank {$field->Label()} field.");
                     break;
@@ -305,7 +305,6 @@ class FlexiFormExtension extends DataExtension
         // ensure valid config
         //////////////////////
         if (! $conf->exists()) {
-
             if ($name = $this->getFlexiFormDefaultHandlerName()) {
                 if ($handler = FlexiFormHandler::get()->filter('HandlerName', $name)->first()) {
                     $conf->HandlerID = $handler->ID;
@@ -324,7 +323,7 @@ class FlexiFormExtension extends DataExtension
 
         if (!$this->FlexiFormConf('InitializedFields')) {
             $definitions = $this->getFlexiFormInitialFields();
-            if(!empty($definitions)) {
+            if (!empty($definitions)) {
                 $fields = $this->owner->FlexiFormFields();
                 foreach ($definitions as $definition) {
                     if (! is_array($definition) || ! isset($definition['Name']) || ! isset($definition['Type'])) {

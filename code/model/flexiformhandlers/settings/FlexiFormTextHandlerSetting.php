@@ -1,6 +1,7 @@
 <?php
 
-class FlexiFormTextHandlerSetting extends FlexiFormHandlerSetting {
+class FlexiFormTextHandlerSetting extends FlexiFormHandlerSetting
+{
 
     private static $casting = array(
         'Value' => 'Text'
@@ -10,5 +11,4 @@ class FlexiFormTextHandlerSetting extends FlexiFormHandlerSetting {
     {
         return new TextareaField($name, null, $this->Value);
     }
-
 }

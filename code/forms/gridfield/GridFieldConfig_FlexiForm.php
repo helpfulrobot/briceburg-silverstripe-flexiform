@@ -46,8 +46,7 @@ class GridFieldConfig_FlexiForm extends GridFieldConfig
                 ),
                 'DefaultValue' => array(
                     'title' => 'Default Value',
-                    'callback' => function ($record, $column_name, $grid)
-                    {
+                    'callback' => function ($record, $column_name, $grid) {
                         return ($record->hasMethod('getDefaultValueFormField')) ? $record->getDefaultValueFormField(
                             'DefaultValue') : new TextField($column_name);
                     }
@@ -65,4 +64,3 @@ class GridFieldConfig_FlexiForm extends GridFieldConfig
         FlexiFormUtil::include_requirements();
     }
 }
-

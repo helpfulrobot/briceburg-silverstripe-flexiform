@@ -1,6 +1,7 @@
 <?php
 
-class FlexiFormBooleanHandlerSetting extends FlexiFormHandlerSetting {
+class FlexiFormBooleanHandlerSetting extends FlexiFormHandlerSetting
+{
 
     private static $casting = array(
         'Value' => 'Boolean'
@@ -8,11 +9,11 @@ class FlexiFormBooleanHandlerSetting extends FlexiFormHandlerSetting {
 
     public function getCMSField($name)
     {
-        return new CheckboxField($name,null,$this->getValue());
+        return new CheckboxField($name, null, $this->getValue());
     }
 
-    public function getValue(){
+    public function getValue()
+    {
         return (bool) parent::getValue();
     }
-
 }

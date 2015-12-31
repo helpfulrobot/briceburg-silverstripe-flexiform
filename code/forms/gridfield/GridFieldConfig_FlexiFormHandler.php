@@ -36,8 +36,7 @@ class GridFieldConfig_FlexiFormHandler extends GridFieldConfig
             array(
                 'Selected' => array(
                     'title' => 'Selected',
-                    'callback' => function ($record, $column_name, $grid)
-                    {
+                    'callback' => function ($record, $column_name, $grid) {
                         return new CheckboxField_Readonly($column_name);
                     }
                 ),
@@ -60,4 +59,3 @@ class GridFieldConfig_FlexiFormHandler extends GridFieldConfig
             ));
     }
 }
-

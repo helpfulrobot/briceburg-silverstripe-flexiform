@@ -49,7 +49,7 @@ class FlexiForm extends Form
         // @TODO can we use a mock the result of a mock request for a URL instead?
         //   ..Needed in case action requires URL params to display form.
         $action = $this->controller->getAction();
-        if($action != $this->stat('flexiform_post_action')) {
+        if ($action != $this->stat('flexiform_post_action')) {
             Session::set("FormInfo.{$this->FormName()}.flexi_origin", $action);
         }
     }
@@ -77,7 +77,6 @@ class FlexiForm extends Form
     public function httpSubmission($request)
     {
         if ($this->isSubmitted() && ! $this->getSecurityToken()->checkRequest($request)) {
-
             $this->sessionMessage(_t("FlexiForm.RESUBMISSION_MESSAGE", "Your submission was received."),
                 "warning");
 

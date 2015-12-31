@@ -59,7 +59,7 @@ class FlexiFormBasicHandler extends FlexiFormHandler
 
     // Submission Handling
     //////////////////////
-    public function onSubmit(Array $data, FlexiForm $form, SS_HTTPRequest $request, DataObject $flexi)
+    public function onSubmit(array $data, FlexiForm $form, SS_HTTPRequest $request, DataObject $flexi)
     {
         // persist the submission
         $this->saveSubmission($data, $flexi);

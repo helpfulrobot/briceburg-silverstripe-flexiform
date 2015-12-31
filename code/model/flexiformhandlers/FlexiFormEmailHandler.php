@@ -1,6 +1,6 @@
 <?php
 
-class FlexiFormEmailHandler extends FlexiFormBasicHandler 
+class FlexiFormEmailHandler extends FlexiFormBasicHandler
 {
 
     private static $handler_label = 'Email Notification Handler';
@@ -22,7 +22,7 @@ class FlexiFormEmailHandler extends FlexiFormBasicHandler
         $field = $fields->dataFieldByName('NotificationEmails');
         $field->setDescription($this->getEmailFieldDescription());
 
-        $fields->addFieldToTab('Root.Main', $field,'SuccessMessage');
+        $fields->addFieldToTab('Root.Main', $field, 'SuccessMessage');
 
         return $fields;
     }
@@ -34,29 +34,30 @@ class FlexiFormEmailHandler extends FlexiFormBasicHandler
         $settings_tab->fieldByName($this->getSettingFieldName('NotificationEmails'))->setDescription($this->getEmailFieldDescription());
     }
 
-    private function getEmailFieldDescription(){
-      return 'Optional, comma separated list of email addresses that receive submission notifications.';
+    private function getEmailFieldDescription()
+    {
+        return 'Optional, comma separated list of email addresses that receive submission notifications.';
     }
 
     // Submission Handling
     //////////////////////
-    public function onSubmit(Array $data, FlexiForm $form, SS_HTTPRequest $request, DataObject $flexi)
+    public function onSubmit(array $data, FlexiForm $form, SS_HTTPRequest $request, DataObject $flexi)
     {
-      if(parent::onSubmit($data, $form, $request, $flexi)) {
-        // extraplate emails and send notifications
+        if (parent::onSubmit($data, $form, $request, $flexi)) {
+            // extraplate emails and send notifications
         $emails = $flexi->FlexiFormSetting('NotificationEmails')->getValue();
-        if(!empty($emails)) {
+            if (!empty($emails)) {
 
           //$from = $flexi->FlexiFormSetting('NotificationFromAddress')->getValue() ?: null;
           $email = new Email(null, $emails, 'Submission from form: ' . $flexi->FlexiFormID(), $this->getEmailBody());
 
-          $email->sendPlain();
+                $email->sendPlain();
+            }
+
+            return true;
         }
 
-        return true;
-      }
-
-      return false;
+        return false;
     }
 
     // Utility Methods
@@ -65,8 +66,8 @@ class FlexiFormEmailHandler extends FlexiFormBasicHandler
     {
         $body = "A visitor with the IP Address of submitted the following values: \r\n\n";
 
-        foreach($this->submission->Values() as $value) {
-          $body .= "[{$value->Name}] : {$value->Value} \r\n";
+        foreach ($this->submission->Values() as $value) {
+            $body .= "[{$value->Name}] : {$value->Value} \r\n";
         }
 
         return $body;

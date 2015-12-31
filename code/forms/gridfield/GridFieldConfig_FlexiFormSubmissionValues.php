@@ -21,13 +21,11 @@ class GridFieldConfig_FlexiFormSubmissionValues extends GridFieldConfig
                 ),
                 'Value' => array(
                     'title' => 'Response Value',
-                    'callback' => function ($record, $column_name, $grid)
-                    {
-                        return new ReadonlyField($column_name,'XXX','XXX');
+                    'callback' => function ($record, $column_name, $grid) {
+                        return new ReadonlyField($column_name, 'XXX', 'XXX');
                     }
                 )
 
             ));
     }
 }
-

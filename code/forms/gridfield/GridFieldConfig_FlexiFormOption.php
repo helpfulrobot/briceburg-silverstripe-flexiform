@@ -30,7 +30,5 @@ class GridFieldConfig_FlexiFormOption extends GridFieldConfig
         // Sort Order
         // ///////////
         $this->addComponent(new GridFieldOrderableRows('SortOrder'));
-
     }
 }
-

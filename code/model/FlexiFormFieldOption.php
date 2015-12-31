@@ -1,6 +1,7 @@
 <?php
 
-class FlexiFormFieldOption extends DataObject {
+class FlexiFormFieldOption extends DataObject
+{
 
     private static $db = array(
         'Label' => 'Varchar',
@@ -17,11 +18,12 @@ class FlexiFormFieldOption extends DataObject {
     );
 
 
-    public function validate() {
+    public function validate()
+    {
         $result = parent::validate();
 
-        if($result->valid()) {
-            if(empty($this->Value)) {
+        if ($result->valid()) {
+            if (empty($this->Value)) {
                 $result->error('Option Values cannot be blank.');
             }
         }
@@ -29,10 +31,9 @@ class FlexiFormFieldOption extends DataObject {
         return $result;
     }
 
-    public function getLabel(){
-
+    public function getLabel()
+    {
         $label = $this->getField('Label');
         return (empty($label)) ? $this->Value : $label;
     }
-
 }
